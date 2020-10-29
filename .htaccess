@@ -1,0 +1,22 @@
+Options All -Indexes -Includes
+
+<files router.php>
+order allow,deny
+deny from all
+</files>
+
+RewriteEngine on
+RewriteBase /project
+
+RewriteCond $1 !^(index\.php|resources|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+
+ErrorDocument 401 /error/401
+
+ErrorDocument 403 /error/403
+
+ErrorDocument 404 /error/404
+
+ErrorDocument 500 /error/500

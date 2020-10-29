@@ -1,0 +1,33 @@
+<!-- Footer -->
+<footer class="py-5" id="footer-main">
+    <div class="container">
+      <div class="row align-items-center justify-content-xl-between">
+        <div class="col-xl-6">
+          <div class="copyright text-center text-xl-left text-muted">
+            &copy; 2020 <a href="https://hoangtu.net" class="font-weight-bold ml-1" target="_blank">MokaDEV</a>
+          </div>
+        </div>
+        <div class="col-xl-6">
+          <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+            <li class="nav-item">
+              <a href="https://hoangtu.net" class="nav-link" target="_blank">MokaDEV</a>
+            </li>
+            <li class="nav-item">
+              <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a href="https://www.creative-tim.com/license" class="nav-link" target="_blank">License</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Argon Scripts -->
+  <?php layout('admin.layouts.libjs'); ?>
+</body>
+
+</html>
