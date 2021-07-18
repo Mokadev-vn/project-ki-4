@@ -43,14 +43,34 @@
                             <p class="text-danger small mr-3 ml-3 mt-1" id="error-name"></p>
                         </div>
                         <div class="form-group row">
-                            <label for="show" class="col-md-2 col-form-label form-control-label">Show Index</label>
+                            <label for="show" class="col-md-2 col-form-label form-control-label">Show Menu</label>
                             <div class="col-md-10">
-                                <select class="form-control" id="show_index">
+                                <select class="form-control" id="show_menu">
                                     <option value="1">True</option>
                                     <option value="2">False</option>
                                 </select>
                             </div>
-                            <p class="text-danger small mr-3 ml-3 mt-1" id="error-show_index"></p>
+                            <p class="text-danger small mr-3 ml-3 mt-1" id="error-show_menu"></p>
+                        </div>
+                        <div class="form-group row">
+                            <label for="show" class="col-md-2 col-form-label form-control-label">Show Header</label>
+                            <div class="col-md-10">
+                                <select class="form-control" id="show_header">
+                                    <option value="1">True</option>
+                                    <option value="2">False</option>
+                                </select>
+                            </div>
+                            <p class="text-danger small mr-3 ml-3 mt-1" id="error-show_header"></p>
+                        </div>
+                        <div class="form-group row">
+                            <label for="show" class="col-md-2 col-form-label form-control-label">Show Slide</label>
+                            <div class="col-md-10">
+                                <select class="form-control" id="show_slide">
+                                    <option value="1">True</option>
+                                    <option value="2">False</option>
+                                </select>
+                            </div>
+                            <p class="text-danger small mr-3 ml-3 mt-1" id="error-show_slide"></p>
                         </div>
                         <div class="form-group row">
                             <label for="image-category" class="col-md-2 col-form-label form-control-label">Image</label>

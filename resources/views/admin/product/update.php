@@ -64,13 +64,6 @@
                             <p class="text-danger small mr-3 ml-3 mt-1" id="error-sale"></p>
                         </div>
                         <div class="form-group row">
-                            <label for="coupon" class="col-md-2 col-form-label form-control-label">Coupon</label>
-                            <div class="col-md-10">
-                                <input class="form-control" type="text" value="<?= $data['product']['coupon'] ?>" id="coupon">
-                            </div>
-                            <p class="text-danger small mr-3 ml-3 mt-1" id="error-coupon"></p>
-                        </div>
-                        <div class="form-group row">
                             <label for="status" class="col-md-2 col-form-label form-control-label">Status</label>
                             <div class="col-md-10">
                                 <select class="form-control" id="status">

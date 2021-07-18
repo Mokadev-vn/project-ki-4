@@ -86,7 +86,13 @@
                                         </div>
                                     </th>
                                     <td class="price">
-                                        <?= ($category['show_index'] == 1) ? 'Show' : 'Hidden' ?>
+                                        <?= ($category['show_menu'] == 1) ? 'Show' : 'Hidden' ?>
+                                    </td>
+                                    <td class="price">
+                                        <?= ($category['show_header'] == 1) ? 'Show' : 'Hidden' ?>
+                                    </td>
+                                    <td class="price">
+                                        <?= ($category['show_slide'] == 1) ? 'Show' : 'Hidden' ?>
                                     </td>
                                     <td class="table-actions">
                                         <a href="<?= APP_CONFIG['url'] ?>admin/category/<?= $category['id'] ?>/update" class="table-action" data-toggle="tooltip" data-original-title="Edit Category">

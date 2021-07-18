@@ -34,7 +34,7 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($carts as $cart) : ?>
-                                    <tr>
+                                    <tr class="product_cart" id="<?= $cart['id'] ?>">
                                         <td class="cart__product__item">
                                             <img src="<?= APP_CONFIG['uploads'] . $cart['image'] ?>" alt="">
                                             <div class="cart__product__item__title">
@@ -81,7 +81,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="cart__btn update__btn">
-                    <a href="#"><span class="icon_loading"></span> Update cart</a>
+                    <a href="#" id="update_cart"><span class="icon_loading"></span> Update cart</a>
                 </div>
             </div>
         </div>
@@ -99,7 +99,7 @@
                 <div class="cart__total__procced">
                     <h6>Cart total</h6>
                     <ul>
-                        <li>Subtotal <span>0</span></li>
+                        <li>Total Product <span><?= count($carts) ?></span></li>
                         <li>Total <span><?= price($totals) ?></span></li>
                     </ul>
                     <a href="#" class="primary-btn">Proceed to checkout</a>

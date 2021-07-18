@@ -21,13 +21,18 @@ class HomeController extends Controller
         $product = $products->params(['p.*', 'pt.slug as slug_cate'])->join("product_types pt", "p.product_type_id = pt.id")->orderBy("p.id")->limit(24)->get();
 
         //$listCates = $categories->query("SELECT pt.*, count(p.id) as total FROM product_types pt JOIN products p ON pt.id = p.product_type_id WHERE pt.show_index = 1 GROUP BY pt.id LIMIT 5");
-        $listCates = $categories->params(['p.*', 'count(pd.id) as total'])->join('products pd', 'p.id = pd.product_type_id')->where('p.show_index', 1)->groupBy('p.id')->limit(5)->get();
+        $listCates = $categories->params(['p.*', 'count(pd.id) as total'])->join('products pd', 'p.id = pd.product_type_id')->where('p.show_header', 1)->groupBy('p.id')->limit(5)->get();
+        $listSlide = $categories->where('show_slide',1)->get(5);
+
         $hotTrend = $products->orderBy('count_views')->limit(3)->get();
+        $sale = $products->orderBy('sale')->limit(3)->get();
 
         $data = [
             'categories' => $listCates,
             'products' => $product,
             'hotTrend' => $hotTrend,
+            'listSale' => $sale,
+            'slider' => $listSlide
         ];
         return $this->view('default.index', $data);
     }

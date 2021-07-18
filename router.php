@@ -1,7 +1,7 @@
 <?php
 
 use Core\Router;
-use Core\App;
+
 
 
 $router = new Router();
@@ -56,9 +56,11 @@ $router->middleware('AuthAdmin')->post('/admin/comment/delete','App\Controllers\
 
 $router->middleware('AuthAdmin')->get('/admin/api/chart', 'App\Controllers\Admin\ApiController@chart');
 
+$router->middleware('AuthAdmin')->get('/admin/setting', 'App\Controllers\Admin\HomeController@setting');
+$router->middleware('AuthAdmin')->post('/admin/setting','App\Controllers\Admin\HomeController@editSetting');
 
 // router admin orders
-$router->middleware('AuthAdmin')->get('/admin/order','');
+$router->middleware('AuthAdmin')->get('/admin/order','App\Controllers\Admin\OrderController@index');
 
 
 /**
@@ -96,6 +98,7 @@ $router->middleware('checkLogin')->get('/user/orders', 'App\Controllers\User\Car
 $router->get('/add-cart/{slug}', 'App\Controllers\User\CartController@addCart');
 $router->get('/carts', 'App\Controllers\User\CartController@cart');
 $router->post('/cart/delete', 'App\Controllers\User\CartController@delete');
+$router->post('/cart/update', 'App\Controllers\User\CartController@update');
 
 
 $router->get('/blog', function(){

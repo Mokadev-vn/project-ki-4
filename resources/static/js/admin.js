@@ -193,6 +193,31 @@ $(document).ready(function () {
     );
   });
 
+  $("#update-setting").click(function () {
+    let csrf_token = $("#csrf_token").val();
+    let name = $("#name").val();
+    let image = $("#image").prop("files")[0];
+
+    let dataPost = new FormData();
+
+    dataPost.append("csrf_token", csrf_token);
+    dataPost.append("name", name);
+    dataPost.append("image", image);
+
+    $("#error-name").html("");
+    $("#error-image").html("");
+
+    ajaxData("POST", "admin/setting", dataPost).then(
+      (data) => {
+        if (data.status == "success") {
+          setTimeout(function () {
+            window.location.reload();
+          }, 1000);
+        }
+      }
+    );
+  });
+
   $(".delete-product").click(function () {
     let el = this;
     let id = $(this).attr("id_product");
@@ -285,14 +310,18 @@ $(document).ready(function () {
   $("#add-category").click(function () {
     let csrf_token = $("#csrf_token").val();
     let name = $("#category-name").val();
-    let show_index = $("#show_index").val();
+    let show_menu = $("#show_menu").val();
+    let show_header = $("#show_header").val();
+    let show_slide = $("#show_slide").val();
     let image = $("#image-category").prop("files")[0];
 
     let dataPost = new FormData();
 
     dataPost.append("csrf_token", csrf_token);
     dataPost.append("name", name);
-    dataPost.append("show_index", show_index);
+    dataPost.append("show_menu", show_menu);
+    dataPost.append("show_header", show_header);
+    dataPost.append("show_slide", show_slide);
     dataPost.append("image", image);
 
     $("#error-name").html("");
@@ -311,7 +340,9 @@ $(document).ready(function () {
   $("#update-category").click(function () {
     let csrf_token = $("#csrf_token").val();
     let name = $("#category-name").val();
-    let show_index = $("#show_index").val();
+    let show_menu = $("#show_menu").val();
+    let show_header = $("#show_header").val();
+    let show_slide = $("#show_slide").val();
     let id = $("#category-id").val();
     let image = $("#image-category").prop("files")[0];
 
@@ -319,11 +350,14 @@ $(document).ready(function () {
 
     dataPost.append("csrf_token", csrf_token);
     dataPost.append("name", name);
-    dataPost.append("show_index", show_index);
+    dataPost.append("show_menu", show_menu);
+    dataPost.append("show_header", show_header);
+    dataPost.append("show_slide", show_slide);
+
     dataPost.append("image", image);
 
     $("#error-name").html("");
-    $("#error-show_index").html("");
+    $("#error-show_menu").html("");
     $("#error-image").html("");
 
     ajaxData("POST", "admin/category/" + id + "/update", dataPost).then(

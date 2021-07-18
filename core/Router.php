@@ -173,9 +173,9 @@ class Router
     {
         if (!isset($this->uri)) {
             $this->uri = $this->getPathInfo();
-            if (strlen($this->getQueryString())) {
-                $this->uri .= "?" . $this->getQueryString();
-            }
+            //if (strlen($this->getQueryString())) {
+             //   $this->uri .= "?" . $this->getQueryString();
+            //}
         }
 
         return $this->uri;

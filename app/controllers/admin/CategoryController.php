@@ -34,7 +34,9 @@ class CategoryController extends Controller
 
         $csrf_token = request('csrf_token');
         $name = request('name');
-        $show_index = request('show_index');
+        $show_menu = request('show_menu');
+        $show_header = request('show_header');
+        $show_slide = request('show_slide');
         $image = fileRequest('image');
 
 
@@ -48,8 +50,16 @@ class CategoryController extends Controller
             $result['error']['name'] = 'Không được bỏ trống trường này và phải trên 3 kí tự!';
         }
 
-        if (!$show_index) {
-            $result['error']['show_index'] = 'Phải chọn trường này!';
+        if (!$show_menu) {
+            $result['error']['show_menu'] = 'Phải chọn trường này!';
+        }
+
+        if (!$show_header) {
+            $result['error']['show_header'] = 'Phải chọn trường này!';
+        }
+
+        if (!$show_slide) {
+            $result['error']['show_slide'] = 'Phải chọn trường này!';
         }
 
         if (!$image) {
@@ -79,7 +89,9 @@ class CategoryController extends Controller
         $category = new Categories();
 
         $category->name = $name;
-        $category->show_index = $show_index;
+        $category->show_menu = $show_menu;
+        $category->show_header = $show_header;
+        $category->show_slide = $show_slide;
         $category->slug = slug($name, 'product_types');
         $category->image = $imageUpload;
 
@@ -116,7 +128,9 @@ class CategoryController extends Controller
 
         $csrf_token = request('csrf_token');
         $name = request('name');
-        $show_index = request('show_index');
+        $show_menu = request('show_menu');
+        $show_header = request('show_header');
+        $show_slide = request('show_slide');
         $image = fileRequest('image');
 
         if (!csrf_verify($csrf_token)) {
@@ -129,8 +143,16 @@ class CategoryController extends Controller
             $result['error']['name'] = 'Không được bỏ trống trường này và phải trên 3 kí tự!';
         }
 
-        if (!$show_index) {
-            $result['error']['show_index'] = 'Phải chọn trường này!';
+        if (!$show_menu) {
+            $result['error']['show_menu'] = 'Phải chọn trường này!';
+        }
+
+        if (!$show_header) {
+            $result['error']['show_header'] = 'Phải chọn trường này!';
+        }
+
+        if (!$show_slide) {
+            $result['error']['show_slide'] = 'Phải chọn trường này!';
         }
 
         if ($image) {
@@ -149,6 +171,7 @@ class CategoryController extends Controller
             }
         }
 
+
         if ($result['error']) {
             echo json_encode($result);
             return;
@@ -159,6 +182,10 @@ class CategoryController extends Controller
 
         $category->where('id', $id);
         $category->name = $name;
+        $category->show_menu = $show_menu;
+        $category->show_header = $show_header;
+        $category->show_slide = $show_slide;
+
         if (isset($imageUpload)) $category->image = $imageUpload;
         if ($slug['name'] != $name) {
             $category->slug = slug($name, 'product_types');

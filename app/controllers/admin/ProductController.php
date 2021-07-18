@@ -18,7 +18,7 @@ class ProductController extends Controller
         $pagination = handlPagination($limit, $page, 'products');
 
 
-        $data = $product->query("SELECT p.*, pt.name as type_name FROM products as p JOIN product_types as pt ON p.product_type_id = pt.id LIMIT " . $pagination['start'] . ", $limit");
+        $data = $product->query("SELECT p.*, pt.name as type_name FROM products as p JOIN product_types as pt ON p.product_type_id = pt.id ORDER BY p.id DESC LIMIT " . $pagination['start'] . ", $limit");
 
         return $this->view('admin.product.index', ['product' => $data, 'page' => $page, 'total' => $pagination['total']]);
     }
@@ -154,7 +154,6 @@ class ProductController extends Controller
         $status      = request('status');
         $category    = request('category');
         $image       = fileRequest('image');
-        $coupon      = request('coupon');
 
         if (!csrf_verify($csrf_token)) {
             $result['message'] = 'Có lỗi xảy ra!';
@@ -178,9 +177,6 @@ class ProductController extends Controller
             $result['error']['status'] = 'Phải chọn status!';
         }
 
-        if($coupon && !preg_match("/^[a-zA-Z\d]+$/",$coupon)){
-            $result['error']['coupon'] = 'Mã Giảm giá chỉ chứa số và chữ';
-        }
 
         if (!$category) {
             $result['error']['category'] = 'Phải chọn 1 danh mục!';
@@ -218,7 +214,6 @@ class ProductController extends Controller
         $product->name = $name;
         $product->price = $price;
         $product->sale = $sale;
-        $product->coupon = ($coupon) ? $coupon : '';
 
         if ($slug['name'] != $name) {
             $product->slug = slug($name, 'products');

@@ -122,7 +122,7 @@
                                     <?php csrf_field(); ?>
                                     <input type="hidden" id="id_product" value="<?= $info['id']; ?>">
                                     <div class="form-group">
-                                        <label for="comment">Read Comment</label>
+                                        <label for="comment">Write Comment</label>
                                         <textarea class="form-control" id="comment" col="100" rows="3"></textarea>
                                         <p style="color: red" id="error-message"></p>
                                     </div>
@@ -143,7 +143,7 @@
                 </div>
             </div>
             <?php foreach ($productCate as $product) : ?>
-                <div class="col-lg-3 col-md-4 col-sm-6 <?= $product['slug_cate'] ?>">
+                <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="<?= APP_CONFIG['uploads'] . $product['image'] ?>">
                             <?php if ($product['sale'] != 0) : ?>

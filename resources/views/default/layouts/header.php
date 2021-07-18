@@ -2,9 +2,13 @@
 
 use App\Models\Categories;
 use App\Models\Cart;
+use App\Models\Setting;
 
 $categories = new Categories();
-$listCategory = $categories->get();
+$listCategory = $categories->where('show_header',1)->get();
+
+$setting = new Setting();
+$infoSetting = $setting->getOne();
 
 if (getSession('user')) {
     $carts = new Cart();
@@ -13,6 +17,8 @@ if (getSession('user')) {
     $getCarts = json_decode(getCookies('carts'), true);
 }
 
+$title = isset($title) ? $title : $infoSetting['title'];
+$logo = isset($infoSetting['logo']) ? APP_CONFIG['url']."uploads/".$infoSetting['logo'] : APP_CONFIG['static']."assets/img/logo.png";
 
 
 ?>
@@ -62,7 +68,7 @@ if (getSession('user')) {
                 </a></li>
         </ul>
         <div class="offcanvas__logo">
-            <a href="<?= APP_CONFIG['url'] ?>"><img src="<?= APP_CONFIG['static'] ?>assets/img/logo.png" alt=""></a>
+            <a href="<?= APP_CONFIG['url'] ?>"><img src="" alt=""></a>
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__auth">
@@ -85,7 +91,7 @@ if (getSession('user')) {
             <div class="row">
                 <div class="col-xl-3 col-lg-2">
                     <div class="header__logo">
-                        <a href="<?= APP_CONFIG['url'] ?>"><img src="<?= APP_CONFIG['static'] ?>assets/img/logo.png" alt=""></a>
+                        <a href="<?= APP_CONFIG['url'] ?>"><img src="<?= $logo ?>" alt=""></a>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-7">

@@ -65,37 +65,71 @@ class CartController extends Controller
         redirect('carts');
     }
 
-    public function cart(){
+    public function cart()
+    {
         $user = getSession('user');
-        if($user){
+        if ($user) {
             $cart = new Cart();
             $getCart = $cart->where('user_id', $user['id'])->get();
-        }else{
+        } else {
             $getCart = json_decode(getCookies('carts'), true);
         }
         return $this->view('default.cart', ['carts' => $getCart]);
     }
 
-    public function delete(){
+    public function update()
+    {
+        $id = request('id');
+        $quantity = request('quantity');
+
+        $cart = new Cart();
+
+        if (getSession('user')) {
+            $getCart = $cart->where('id', $id)->where('user_id', getSession('user')['id'])->getOne();
+            var_dump($getCart);
+            if ($getCart) {
+                $cart->quantity = $quantity;
+                $cart->where('id', $id)->update();
+                
+            }
+            
+        } else {
+            $cartCookie = json_decode(getCookies('carts'), true);
+
+            if (isset($cartCookie[$id])) {
+                $cartCookie[$id]['quantity'] = $quantity;
+                var_dump($cartCookie);
+                $cartCookie = json_encode($cartCookie);
+                setCookies('carts', $cartCookie, 1000000);
+            }
+        }
+    }
+
+    public function delete()
+    {
         $id = request('id');
 
-        if(!$id){
+        if (!$id) {
             return;
         }
 
         $user = getSession('user');
 
-        if($user){
+        if ($user) {
             $cart = new Cart();
-            $cart->where('id',$id)->where('user_id',$user['id'])->delete();
-        }else{
+            $cart->where('id', $id)->where('user_id', $user['id'])->delete();
+        } else {
             $cartCookie = json_decode(getCookies('carts'), true);
             if (isset($cartCookie[$id])) {
                 unset($cartCookie[$id]);
                 $cartCookie = json_encode($cartCookie);
                 setCookies('carts', $cartCookie, 1000000);
             }
-
         }
+    }
+
+    public function order()
+    {
+        echo "asdfasdf";
     }
 }

@@ -61,4 +61,20 @@ $(document).ready(function () {
     let slug = $(this).attr("slug");
     location.href = URL+"add-cart/"+slug+"?qty="+qty;
   });
+
+  $("#update_cart").click(function(){
+    let listProduct = $(".product_cart")
+
+    // console.log(listProduct)
+    listProduct.map((index, value) => {
+      let id = value.getAttribute("id")
+      let quantity = $("#"+id+" input")[0].value
+      // listInfo.push({id, quantity})
+      $.post(URL + "cart/update", {id, quantity}, function (data) {
+      })
+    })
+    setTimeout(function () {
+      location.reload();
+    }, 500);
+  })
 });

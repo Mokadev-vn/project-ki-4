@@ -99,6 +99,12 @@ $user = getSession('user');
                   <span class="nav-link-text">Contacts</span>
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?= APP_CONFIG['url'] ?>admin/setting">
+                  <i class="ni ni ni-settings text-red"></i>
+                  <span class="nav-link-text">Setting</span>
+                </a>
+              </li>
             </ul>
 
             <!-- Divider -->

@@ -1,4 +1,4 @@
-<?php layout('default.layouts.header', ['title' => 'Web Shop']) ?>
+<?php layout('default.layouts.header') ?>
 
 <!-- Categories Section Begin -->
 <section class="categories">
@@ -96,12 +96,12 @@
         <div class="row">
             <div class="col-xl-7 col-lg-8 m-auto">
                 <div class="banner__slider owl-carousel">
-                    <?php foreach ($categories as $category) : ?>
+                    <?php foreach ($slider as $slide) : ?>
                         <div class="banner__item">
                             <div class="banner__text">
                                 <span>Categories</span>
-                                <h1><?= $category['name'] ?></h1>
-                                <a href="<?= $category['slug'] ?>">Shop now</a>
+                                <h1><?= $slide['name'] ?></h1>
+                                <a href="category/<?= $slide['slug'] ?>">Shop now</a>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -144,59 +144,29 @@
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="trend__content">
                     <div class="section-title">
-                        <h4>Best seller</h4>
+                        <h4>Best Sale</h4>
                     </div>
-                    <div class="trend__item">
-                        <div class="trend__item__pic">
-                            <img src="<?= APP_CONFIG['static'] ?>assets/img/trend/bs-1.jpg" alt="">
-                        </div>
-                        <div class="trend__item__text">
-                            <h6>Cotton T-Shirt</h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
+                    <?php foreach ($listSale as $sale) : ?>
+                        <div class="trend__item">
+                            <div class="trend__item__pic">
+                                <img src="<?= APP_CONFIG['uploads'] . $sale['image'] ?>" alt="">
                             </div>
-                            <div class="product__price">$ 59.0</div>
-                        </div>
-                    </div>
-                    <div class="trend__item">
-                        <div class="trend__item__pic">
-                            <img src="<?= APP_CONFIG['static'] ?>assets/img/trend/bs-2.jpg" alt="">
-                        </div>
-                        <div class="trend__item__text">
-                            <h6>Zip-pockets pebbled tote <br />briefcase</h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
+                            <div class="trend__item__text">
+                                <h6><a href="<?= APP_CONFIG['url'] . 'product/' . $sale['slug'] ?>"><?= $sale['name'] ?></a></h6>
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="product__price"><?= sale($sale['price'], $sale['sale']) ?></div>
                             </div>
-                            <div class="product__price">$ 59.0</div>
                         </div>
-                    </div>
-                    <div class="trend__item">
-                        <div class="trend__item__pic">
-                            <img src="<?= APP_CONFIG['static'] ?>assets/img/trend/bs-3.jpg" alt="">
-                        </div>
-                        <div class="trend__item__text">
-                            <h6>Round leather bag</h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product__price">$ 59.0</div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
+            <!-- <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="trend__content">
                     <div class="section-title">
                         <h4>Feature</h4>
@@ -250,7 +220,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
