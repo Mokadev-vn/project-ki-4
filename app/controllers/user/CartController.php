@@ -21,7 +21,7 @@ class CartController extends Controller
         $qty = (request('qty')) ? request('qty') : 1;
 
         if (getSession('user')) {
-            $getCart = $cart->where('product_id', $check['id'])->where('user_id', getSession('user')['id'])->getOne();
+            $getCart = $cart->where('product_id', $check['id'])->where('user_id', getSession('user')['id'])->where('status', 0)->getOne();
             if (!$getCart) {
                 $cart->user_id = getSession('user')['id'];
                 $cart->name = $check['name'];
@@ -70,7 +70,7 @@ class CartController extends Controller
         $user = getSession('user');
         if ($user) {
             $cart = new Cart();
-            $getCart = $cart->where('user_id', $user['id'])->get();
+            $getCart = $cart->where('user_id', $user['id'])->where('status', 0)->get();
         } else {
             $getCart = json_decode(getCookies('carts'), true);
         }
@@ -126,10 +126,5 @@ class CartController extends Controller
                 setCookies('carts', $cartCookie, 1000000);
             }
         }
-    }
-
-    public function order()
-    {
-        echo "asdfasdf";
     }
 }

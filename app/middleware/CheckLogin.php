@@ -6,7 +6,7 @@ class CheckLogin{
     public function handle()
     {
         if (!App::getSession('user')) {
-            App::redirect('');
+            App::redirect('login');
             return false;
         }
         return true;

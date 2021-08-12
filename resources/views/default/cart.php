@@ -102,7 +102,7 @@
                         <li>Total Product <span><?= count($carts) ?></span></li>
                         <li>Total <span><?= price($totals) ?></span></li>
                     </ul>
-                    <a href="#" class="primary-btn">Proceed to checkout</a>
+                    <a href="./checkout" class="primary-btn">Proceed to checkout</a>
                 </div>
             </div>
         </div>

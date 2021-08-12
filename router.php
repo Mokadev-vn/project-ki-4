@@ -61,6 +61,9 @@ $router->middleware('AuthAdmin')->post('/admin/setting','App\Controllers\Admin\H
 
 // router admin orders
 $router->middleware('AuthAdmin')->get('/admin/order','App\Controllers\Admin\OrderController@index');
+$router->middleware('AuthAdmin')->get('/admin/order-detail/{id}','App\Controllers\Admin\OrderController@detail');
+$router->middleware('AuthAdmin')->post('/admin/order-update','App\Controllers\Admin\OrderController@update');
+
 
 
 /**
@@ -94,12 +97,15 @@ $router->middleware('checkLogin')->get('/profile', 'App\Controllers\User\Account
 $router->middleware('checkLogin')->post('/profile', 'App\Controllers\User\AccountController@postProfile');
 $router->middleware('checkLogin')->get('/user/change-password', 'App\Controllers\User\AccountController@changePassword');
 $router->middleware('checkLogin')->post('/user/change-password', 'App\Controllers\User\AccountController@postChangePassword');
-$router->middleware('checkLogin')->get('/user/orders', 'App\Controllers\User\CartController@order');
+$router->middleware('checkLogin')->get('/user/orders', 'App\Controllers\User\OrderController@index');
+$router->middleware('checkLogin')->get('/user/order-detail/{id}', 'App\Controllers\User\OrderController@detail');
+$router->middleware('checkLogin')->post('/user/order-cancel', 'App\Controllers\User\OrderController@cancel');
+$router->middleware('checkLogin')->get('/checkout', 'App\Controllers\User\OrderController@checkout');
+$router->middleware('checkLogin')->post('/checkout', 'App\Controllers\User\OrderController@postCheckout');
 $router->get('/add-cart/{slug}', 'App\Controllers\User\CartController@addCart');
 $router->get('/carts', 'App\Controllers\User\CartController@cart');
 $router->post('/cart/delete', 'App\Controllers\User\CartController@delete');
 $router->post('/cart/update', 'App\Controllers\User\CartController@update');
-
 
 $router->get('/blog', function(){
     echo "Tính năng đang được phát triển vui lòng quay lại sau";
@@ -108,5 +114,6 @@ $router->get('/blog', function(){
 $router->get('/about-us', function(){
     echo "Tính năng đang được phát triển vui lòng quay lại sau";
 });
+
 
 $router->execute();

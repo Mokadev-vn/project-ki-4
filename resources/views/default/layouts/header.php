@@ -12,7 +12,7 @@ $infoSetting = $setting->getOne();
 
 if (getSession('user')) {
     $carts = new Cart();
-    $getCarts = $carts->where('user_id', getSession('user')['id'])->get();
+    $getCarts = $carts->where('user_id', getSession('user')['id'])->where('status', 0)->get();
 } else {
     $getCarts = json_decode(getCookies('carts'), true);
 }

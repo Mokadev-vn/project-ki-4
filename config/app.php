@@ -170,6 +170,11 @@ function sale($number, $sale)
     return ($sale == 0) ? price($number) : price($number - ($number * ($sale / 100))) . " <span>" . price($number) . "</span>";
 }
 
+function saleOrder($number, $sale)
+{
+    return ($sale == 0) ? price($number) : price($number - ($number * ($sale / 100)));
+}
+
 function pagination($total, $page)
 {
     $prev = "<li class=\"page-item " . (($page > 1 && $total > 1) ? "" : "disabled") . "\">
@@ -305,4 +310,19 @@ function sendMail($to, $toName, $title, $message)
         return true;
     }
     return $mail->getLogs();
+}
+
+function orderStatus($status){
+    switch ($status){
+        case 0:
+            return '<span class="badge badge-dot mr-4"><i class="bg-warning"></i><span class="status">Pending</span></span>';
+        case 1: 
+            return '<span class="badge badge-dot mr-4"><i class="bg-info"></i><span class="status">Processing</span></span>';
+        case 2:
+            return '<span class="badge badge-dot mr-4"><i class="bg-success"></i><span class="status">Completed</span></span>';
+        case 3:
+            return '<span class="badge badge-dot mr-4"><i class="bg-danger"></i><span class="status">Cancel</span></span>';
+        default:
+            return '<span class="badge badge-dot mr-4"><i class="bg-warning"></i><span class="status">Pending</span></span>';
+    }
 }

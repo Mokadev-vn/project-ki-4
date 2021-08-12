@@ -733,6 +733,47 @@ $(document).ready(function () {
     });
   });
 
+  $('.cancel-order').click(function () {
+    let el = this;
+    let id = $(this).attr("id_order");
+    swal({
+      title: "Are you sure?",
+      text: "It will permanently cancel !",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Deleted!",
+    }).then(function (result) {
+      if (result.value) {
+        $.post(URL + "/user/order-cancel", { id }, function (
+          data,
+          status
+        ) {
+          data = JSON.parse(data);
+          if (data.error) {
+            swal("Cancel error!", "Error..........", "warning");
+            return;
+          }
+          swal("Cancel!", "Your cancel order.", "success");
+          setTimeout(function () {
+            window.location.reload();
+          }, 1000)
+        });
+      }
+    });
+  })
+
+  $('#change-status-order').change(async function () {
+    let id = $(this).attr("id_order");
+    let status = $(this).val();
+    let result = await $.post(URL + 'admin/order-update', {id, status}, function (data) {
+      data = JSON.parse(data);
+      let typeStatus = data.status == "success" ? "success" : "warning";
+      notify("Successfully", data.message, typeStatus);
+    });
+  });
+
 
 
 });
